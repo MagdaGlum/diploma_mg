@@ -1,0 +1,24 @@
+Задание 1
+
+SELECT c.login,
+      COUNT(o.courierId) AS orders_in_delivery
+FROM Couriers AS c JOIN Orders AS o ON o.courierId = c.id 
+GROUP BY c.login, o.courierId, o.inDelivery
+HAVING o.inDelivery = true;
+
+
+Задание 2
+SELECT track,
+       CASE
+           WHEN finished = true THEN '2'
+           WHEN cancelled = true THEN '-1'
+           WHEN inDelivery = true THEN '1'
+           ELSE '0'
+       END
+FROM Orders;
+
+В Консоль: 
+
+select c.login, count(o."courierId") as orders_in_delivery from "Couriers" as c join "Orders" as o on o."courierId" = c.id group by o."courierId",c.login,o."inDelivery"  having o."inDelivery" = true;
+
+select track,case when finished = true then 2 when cancelled = true then -1 when "inDelivery" = true then 1 else 0 end from "Orders";
